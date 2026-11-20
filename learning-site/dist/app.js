@@ -28,6 +28,12 @@ function render() {
 	if (/^[1-6]-[1-3]$/.test(route) || route === "finish")
 		save("position", route);
 	const last = read("position");
+	if (route === "finish") {
+		for (const note of section.querySelectorAll("[data-ref]")) {
+			note.textContent =
+				document.getElementById(note.dataset.ref).value || "まだ記入していません。";
+		}
+	}
 	if (/^[1-6]-[1-3]$/.test(last) || last === "finish") {
 		start.href = `#${last}`;
 		start.textContent =
